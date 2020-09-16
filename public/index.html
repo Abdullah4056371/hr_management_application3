@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>HR Management System</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <script src="./javascript.js"></script>
+
+</head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<body>
+
+<div class="container">
+  <h2 >HR Management system</h2>
+  <!-- Trigger the modal with a button -->
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add new Employee</button>
+  <table id="myTable" border="1"> 
+  </table>
+  <!-- <input type="button" onclick="show_table_data1()" value="Create the table">  -->
+  <button id="delete_btn" class="btn btn-default" onclick="delete_records()">Delete Selected Rows</button>
+
+  <!-- Modal -->
+  <div class="modal" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Employee Details</h4>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal">
+        <div class="form-group">
+      <label class="control-label col-sm-1" for="name_inp">Name:</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" id="name_inp" placeholder="Enter name" name="emp_name" value="test">
+      </div>
+      <label class="control-label col-sm-1" for="age_inp" >Age:</label>
+      <div class="col-sm-3">
+        <input type="number" class="form-control" id="age_inp" placeholder="Enter Age" name="emp_age" value="11">
+      </div>
+      <label class="control-label col-sm-1" for="gender_inp">Gender:</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" id="gender_inp" placeholder="Enter Gender" name="emp_gender" value="test">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-1" for="salary_inp">Salary:</label>
+      <div class="col-sm-3">
+        <input type="number" class="form-control" id="salary_inp" placeholder="Enter Salary" name="emp_salary" value="11">
+      </div>
+      <label class="control-label col-sm-1" for="dob_inp">Date-Birth:</label>
+      <div class="col-sm-3">
+        <input type="date" class="form-control" id="dob_inp" placeholder="Enter Date-of-Birth" name="emp_dob" value="2020-02-02">
+      </div>
+      <label class="control-label col-sm-1" for="doj_inp">Date-Join:</label>
+      <div class="col-sm-3">
+        <input type="date" class="form-control" id="doj_inp" placeholder="Enter Date-of-Joining" name="emp_doj" value="2020-02-02">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-1" for="dol_inp">Date-Leaving:</label>
+      <div class="col-sm-3">
+        <input type="date" class="form-control" id="dol_inp" placeholder="Enter Date-of-leaving" name="emp_dol" value="2020-02-02">
+      </div>
+      <label class="control-label col-sm-1" for="resume_inp">Resume:</label>
+      <div class="col-sm-3">
+        <input type="file" class="form-control" id="resume_inp" placeholder="Enter Resume" name="emp_resume" value="C:\fakepath\daewoo_puma_lathe_manual.pdf">
+      </div>
+      <label class="control-label col-sm-1" for="bonus_inp">Bonus:</label>
+      <div class="col-sm-3">
+        <input type="number" class="form-control" id="bonus_inp" placeholder="Enter Bonus" name="emp_bonus" value="20">
+      </div>
+    </div>
+    <!-- Expertise Details -->
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="exp_name_inp">Expertise Name:</label>
+      <div class="col-sm-4">
+        <input type="text" class="form-control" id="exp_name_inp" placeholder="Enter Name of Expertise" name="emp_exp_name" value="test">
+      </div>
+      <label class="control-label col-sm-2" for="exp_detail_inp">Expertise Detail:</label>
+      <div class="col-sm-4">
+        <input type="text" class="form-control" id="exp_detail_inp" placeholder="Enter Expertise Details" name="emp_exp_detail" value="test">
+      </div>
+    </div>
+    <!-- Leave Details -->
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="med_leave_available_inp">Medical leaves Available:</label>
+      <div class="col-sm-4">
+        <input type="number" class="form-control" id="med_leave_available_inp" placeholder="Enter Medical Leaves Available" name="" value="22">
+      </div>
+      <label class="control-label col-sm-2" for="annual_leave_available_inp">Annual leaves Available:</label>
+      <div class="col-sm-4">
+        <input type="number" class="form-control" id="annual_leave_available_inp" placeholder="Enter Annual Leaves Available" name="" value="22">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="med_leave_availed_inp">Medical leaves Availed:</label>
+      <div class="col-sm-4">
+        <input type="number" class="form-control" id="med_leave_availed_inp" placeholder="Enter Medical Leaves Availed" name="" value="22">
+      </div>
+      <label class="control-label col-sm-2" for="annual_leave_availed_inp">Annual leaves Availed:</label>
+      <div class="col-sm-4">
+        <input type="number" class="form-control" id="annual_leave_availed_inp" placeholder="Enter Annual Leaves Availed" name="" value="22">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="med_leave_availed_on_inp">Medical leaves Availed on:</label>
+      <div class="col-sm-4">
+        <input type="date" class="form-control" id="med_leave_availed_on_inp" placeholder="Enter Medical Leaves Availed on" name="" value="2020-02-02">
+      </div>
+      <label class="control-label col-sm-2" for="annual_leave_availed_on_inp">Annual leaves Availed On:</label>
+      <div class="col-sm-4">
+        <input type="date" class="form-control" id="annual_leave_availed_on_inp" placeholder="Enter Annual Leaves Availed On" name="" value="2020-02-02">
+      </div>
+    </div>
+    <!-- Project Details -->
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="project_name_inp">Project Name:</label>
+      <div class="col-sm-4">
+        <input type="text" class="form-control" id="project_name_inp" placeholder="Enter Name of Project" name="emp_project_name" value="test">
+      </div>
+      <label class="control-label col-sm-2" for="project_detail_inp">Project Detail:</label>
+      <div class="col-sm-4">
+        <input type="text" class="form-control" id="project_detail_inp" placeholder="Enter Project Details" name="emp_project_detail" value="test">
+      </div>
+    </div>
+    <!-- Salary Details -->
+    <div class="form-group">
+    <label class="control-label col-sm-2" for="overtime_inp">Overtime:</label>
+      <div class="col-sm-4">
+        <input type="number" class="form-control" id="overtime_inp" placeholder="Enter Overtime" name="" value="11">
+      </div>
+      <label class="control-label col-sm-2" for="medical_reimbursement_inp">Medical Allowance:</label>
+      <div class="col-sm-4">
+        <input type="number" class="form-control" id="medical_reimbursement_inp" placeholder="Enter Medical Allowance" name="" value="11">
+      </div>
+    </div>
+      <div class="form-group">
+      <label class="control-label col-sm-2" for="other_reimbursement_inp">Other Allowance:</label>
+      <div class="col-sm-3">
+        <input type="number" class="form-control" id="other_reimbursement_inp" placeholder="Enter Other Allowances" name="" value="11">
+      </div>
+      
+    </div>
+    <!-- Submission -->
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button  type="submit" style="display: none;" class="btn btn-default">Submit</button>
+        
+      </div>
+    </div>
+  </form>
+  <button  onclick="employee_function()" class="btn btn-default">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <!-- Edit Model -->
+      <!-- Modal -->
+  <div class="modal" id="myEditModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Employee Details</h4>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal">
+        <div class="form-group">
+      <label class="control-label col-sm-1" for="name_inp1">Name:</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" id="name_inp1" placeholder="Enter name" name="emp_name" >
+      </div>
+      <label class="control-label col-sm-1" for="age_inp1" >Age:</label>
+      <div class="col-sm-3">
+        <input type="number" class="form-control" id="age_inp1" placeholder="Enter Age" name="emp_age" >
+      </div>
+      <label class="control-label col-sm-1" for="gender_inp1">Gender:</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" id="gender_inp1" placeholder="Enter Gender" name="emp_gender" >
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-1" for="salary_inp1">Salary:</label>
+      <div class="col-sm-3">
+        <input type="number" class="form-control" id="salary_inp1" placeholder="Enter Salary" name="emp_salary" >
+      </div>
+      <label class="control-label col-sm-1" for="dob_inp1">Date-Birth:</label>
+      <div class="col-sm-3">
+        <input type="date" class="form-control" id="dob_inp1" placeholder="Enter Date-of-Birth" name="emp_dob" >
+      </div>
+      <label class="control-label col-sm-1" for="doj_inp1">Date-Join:</label>
+      <div class="col-sm-3">
+        <input type="date" class="form-control" id="doj_inp1" placeholder="Enter Date-of-Joining" name="emp_doj" >
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-1" for="dol_inp1">Date-Leaving:</label>
+      <div class="col-sm-3">
+        <input type="date" class="form-control" id="dol_inp1" placeholder="Enter Date-of-leaving" name="emp_dol" >
+      </div>
+      <label class="control-label col-sm-1" for="resume_inp1">Resume:</label>
+      <div class="col-sm-3">
+        <input type="file" class="form-control" id="resume_inp1" placeholder="Enter Resume" name="emp_resume" >
+      </div>
+      <label class="control-label col-sm-1" for="bonus_inp1">Bonus:</label>
+      <div class="col-sm-3">
+        <input type="number" class="form-control" id="bonus_inp1" placeholder="Enter Bonus" name="emp_bonus" >
+      </div>
+    </div>
+    <!-- Expertise Details -->
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="exp_name_inp1">Expertise Name:</label>
+      <div class="col-sm-4">
+        <input type="text" class="form-control" id="exp_name_inp1" placeholder="Enter Name of Expertise" name="emp_exp_name">
+      </div>
+      <label class="control-label col-sm-2" for="exp_detail_inp1">Expertise Detail:</label>
+      <div class="col-sm-4">
+        <input type="text" class="form-control" id="exp_detail_inp1" placeholder="Enter Expertise Details" name="emp_exp_detail" >
+      </div>
+    </div>
+    <!-- Leave Details -->
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="med_leave_available_inp1">Medical leaves Available:</label>
+      <div class="col-sm-4">
+        <input type="number" class="form-control" id="med_leave_available_inp1" placeholder="Enter Medical Leaves Available" name="" >
+      </div>
+      <label class="control-label col-sm-2" for="annual_leave_available_inp1">Annual leaves Available:</label>
+      <div class="col-sm-4">
+        <input type="number" class="form-control" id="annual_leave_available_inp1" placeholder="Enter Annual Leaves Available" name="" >
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="med_leave_availed_inp1">Medical leaves Availed:</label>
+      <div class="col-sm-4">
+        <input type="number" class="form-control" id="med_leave_availed_inp1" placeholder="Enter Medical Leaves Availed" name="" >
+      </div>
+      <label class="control-label col-sm-2" for="annual_leave_availed_inp1">Annual leaves Availed:</label>
+      <div class="col-sm-4">
+        <input type="number" class="form-control" id="annual_leave_availed_inp1" placeholder="Enter Annual Leaves Availed" name="" >
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="med_leave_availed_on_inp1">Medical leaves Availed on:</label>
+      <div class="col-sm-4">
+        <input type="date" class="form-control" id="med_leave_availed_on_inp1" placeholder="Enter Medical Leaves Availed on" name="" >
+      </div>
+      <label class="control-label col-sm-2" for="annual_leave_availed_on_inp1">Annual leaves Availed On:</label>
+      <div class="col-sm-4">
+        <input type="date" class="form-control" id="annual_leave_availed_on_inp1" placeholder="Enter Annual Leaves Availed On" name="" >
+      </div>
+    </div>
+    <!-- Project Details -->
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="project_name_inp1">Project Name:</label>
+      <div class="col-sm-4">
+        <input type="text" class="form-control" id="project_name_inp1" placeholder="Enter Name of Project" name="emp_project_name" >
+      </div>
+      <label class="control-label col-sm-2" for="project_detail_inp1">Project Detail:</label>
+      <div class="col-sm-4">
+        <input type="text" class="form-control" id="project_detail_inp1" placeholder="Enter Project Details" name="emp_project_detail">
+      </div>
+    </div>
+    <!-- Salary Details -->
+    <div class="form-group">
+    <label class="control-label col-sm-2" for="overtime_inp1">Overtime:</label>
+      <div class="col-sm-4">
+        <input type="number" class="form-control" id="overtime_inp1" placeholder="Enter Overtime" name="" >
+      </div>
+      <label class="control-label col-sm-2" for="medical_reimbursement_inp1">Medical Allowance:</label>
+      <div class="col-sm-4">
+        <input type="number" class="form-control" id="medical_reimbursement_inp1" placeholder="Enter Medical Allowance" name="" >
+      </div>
+    </div>
+      <div class="form-group">
+      <label class="control-label col-sm-2" for="other_reimbursement_inp1">Other Allowance:</label>
+      <div class="col-sm-3">
+        <input type="number" class="form-control" id="other_reimbursement_inp1" placeholder="Enter Other Allowances" name="" >
+      </div>
+      
+    </div>
+    <!-- Submission -->
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button  type="submit" style="display: none;" class="btn btn-default">Submit</button>
+        
+      </div>
+    </div>
+  </form>
+  <button  onclick="edit_data()" class="btn btn-default">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ul style="margin-left: 500px;" class="pagination pagination-lg">
+  <li><a id="p1" onclick="pagination(this)">1</a></li>
+  <li><a id="p2" onclick="pagination(this)">2</a></li>
+  <li><a id="p3" onclick="pagination(this)">3</a></li>
+  <li><a id="p4" onclick="pagination(this)">4</a></li>
+  <li><a id="p5" onclick="pagination(this)">5</a></li>
+</ul>
+<!-- End of edit model-->
+</body>
+</html>
